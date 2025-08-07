@@ -1,0 +1,12 @@
+# 忽略 Python 產生的檔案
+__pycache__/
+*.pyc
+
+# 忽略 MLFlow 產生的結果
+MLFlow DataDraw/
+
+# 忽略 Visualization 的輸出
+Visualization/
+
+# 忽略大型資料集
+datasets/
