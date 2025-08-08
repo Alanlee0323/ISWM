@@ -1,16 +1,42 @@
-einops==0.8.1
-matplotlib==3.10.5
-mlflow==2.18.0
-mlflow_skinny==2.18.0
-numpy==2.3.2
-opencv_contrib_python==4.11.0.86
-opencv_python_headless==4.11.0.86
-Pillow==11.3.0
-scikit_image==0.19.2
-scipy==1.16.1
-seaborn==0.13.2
-six==1.16.0
+############################################################
+#               Core ML & GPU Dependencies               #
+############################################################
 torch==2.5.0+cu124
 torchvision==0.20.0+cu124
-tqdm==4.66.5
+torchaudio==2.5.0+cu124
+
+############################################################
+#         Image Processing & Data Science Libraries        #
+############################################################
+numpy==1.26.3
+scipy==1.12.0
+Pillow==10.2.0
+scikit-image==0.19.2
+
+# 解決衝突：為 Docker 環境選擇 headless 版本，更輕量
+opencv-python-headless==4.11.0.86
+
+# 資料處理常會用到，建議保留
+pandas==2.2.2
+h5py==3.12.1
+
+
+############################################################
+#         Experiment Tracking & Visualization            #
+############################################################
+mlflow==2.18.0
+
+# 用於繪製圖表和視覺化
+matplotlib==3.9.2
+seaborn==0.13.2
+tensorboardX==2.6.2.2
 visdom==0.2.4
+
+
+############################################################
+#                    Utility Libraries                   #
+############################################################
+# 實用工具
+tqdm==4.66.5
+einops==0.8.1
+PyYAML # 用於讀取 .yaml 配置文件
