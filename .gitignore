@@ -4,6 +4,7 @@ __pycache__/
 
 # 忽略 MLFlow 產生的結果
 MLFlow DataDraw/
+mlflow-data/
 
 # 忽略 Visualization 的輸出
 Visualization/
