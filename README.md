@@ -50,6 +50,15 @@ sh predict.sh
 
 ## 致謝 (Acknowledgements)
 
-本專案的神經網路架構大量參考了 [VainF 所開發的 DeepLabV3Plus-Pytorch](https://github.com/VainF/DeepLabV3Plus-Pytorch)。我對此專案進行了修改，使其能應用於可見光衛星影像的海洋內波語意分割任務，包括損失函數調整、訓練流程和評估指標等。
+1. 本專案的神經網路架構大量參考了 [VainF 所開發的 DeepLabV3Plus-Pytorch](https://github.com/VainF/DeepLabV3Plus-Pytorch)。我對此專案進行了修改，使其能應用於可見光衛星影像的海洋內波語意分割任務，包括損失函數調整、訓練流程和評估指標等。
+
+2. 本專案的深度學習模型訓練與驗證，主要基於由 **日本千葉大學環境遙測中心 (Center for Environmental Remote Sensing, CEReS)** 所分發的 **Himawari 8/9 衛星網格數據 (gridded data)**。
+
+該數據集的開發與維護，部分由日本文部科學省 (MEXT) 的虛擬實驗室 (VL) 計畫、科學技術振興機構 (JST/CREST TEEDA) 以及千葉大學的校長領導計畫所支持。
+
+在此，我們對數據提供方與所有相關研究人員的無私貢獻，致上誠摯的感謝。
+
+### **數據使用聲明**
+請注意，根據千葉大學 CEReS 的規定，此 Himawari 8/9 網格數據集僅限於**非商業用途**，並禁止向研究社群以外的第三方進行再分發。
 
 若您對此專案有任何疑問或建議，歡迎隨時透過 Issue 或 Pull Request 提出，期待與您交流。
