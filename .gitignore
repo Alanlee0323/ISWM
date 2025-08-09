@@ -3,7 +3,6 @@ __pycache__/
 *.pyc
 
 # 忽略 MLFlow 產生的結果
-MLFlow DataDraw/
 mlflow-data/
 
 # 忽略 Visualization 的輸出
@@ -14,3 +13,13 @@ Final_Training_Dataset/
 
 # 忽略實驗結果
 experiments/
+
+# 忽略 IDE/編輯器產生的設定檔
+.vscode/
+.idea/
+
+# 忽略作業系統產生的暫存檔
+# macOS
+.DS_Store
+# Windows
+Thumbs.db

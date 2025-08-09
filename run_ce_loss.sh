@@ -90,7 +90,7 @@ CONFIG_FILE="${LOGS_DIR}/config_${LOSS_TYPE}_${MODEL}_gpu${GPU_ID}_$(date +%Y%m%
   echo "Metrics Plots Directory: ${METRICS_PLOTS_DIR}"
 } > "${CONFIG_FILE}"
 
-python main_gpu0.py \
+python train.py \
       --model ${MODEL} \
       --dataset ${DATASET} \
       --loss_type ${LOSS_TYPE} \
