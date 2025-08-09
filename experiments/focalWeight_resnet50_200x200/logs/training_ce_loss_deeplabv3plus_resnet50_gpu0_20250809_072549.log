@@ -1,75 +1,0 @@
-
-Directory settings:
-Checkpoints dir: experiments/focalWeight_resnet50_200x200/checkpoints
-Val results dir: experiments/focalWeight_resnet50_200x200/val_results
-Metrics plots dir: experiments/focalWeight_resnet50_200x200/metrics_plots
-Save feature maps: False
-Feature maps directory: None
-MLflow tracking URI set to: http://mlflow:5000
-
-MLflow 設置完成:
-- 實驗名稱: DeepLabV3Plus_deeplabv3plus_resnet50_ce_loss_sgd_os16_20250809_072553
-- 實驗 ID: 601387982939074701
-- 追蹤 URI: http://mlflow:5000
-
-Metrics Weights Configuration:
-========================================
-MIoU.......................... 0.050
-Foreground IoU................ 0.250
-Foreground F1................. 0.250
-Front Tracking Error.......... 0.250
-Temporal Consistency.......... 0.100
-Region Continuity............. 0.100
-========================================
-
-檢查圖片目錄路徑: ./Final_Training_Dataset/train/imgs
-檢查遮罩目錄路徑: ./Final_Training_Dataset/train/masks
-找到的圖片數量: 3997
-找到的遮罩數量: 3997
-
-前5個圖片文件:
-201905070850.png
-201905070900.png
-201905070910.png
-201905070920.png
-201905070930.png
-
-前5個遮罩文件:
-201905070850_mask.png
-201905070900_mask.png
-201905070910_mask.png
-201905070920_mask.png
-201905070930_mask.png
-
-過濾後的圖片數量: 3997
-過濾後的遮罩數量: 3997
-檢查圖片目錄路徑: ./Final_Training_Dataset/val/imgs
-檢查遮罩目錄路徑: ./Final_Training_Dataset/val/masks
-找到的圖片數量: 1858
-找到的遮罩數量: 1858
-
-前5個圖片文件:
-201905090000.png
-201905090010.png
-201905090020.png
-201905090030.png
-201905090040.png
-
-前5個遮罩文件:
-201905090000_mask.png
-201905090010_mask.png
-201905090020_mask.png
-201905090030_mask.png
-201905090040_mask.png
-
-過濾後的圖片數量: 1858
-過濾後的遮罩數量: 1858
-數據集類型 - 訓練: BinarySegmentation, 驗證: BinarySegmentation
-Calculating class weights...
-Calculating class weights:   0%|          | 0/31 [00:00<?, ?it/s]Calculating class weights:   3%|▎         | 1/31 [00:00<00:19,  1.57it/s]Calculating class weights:  16%|█▌        | 5/31 [00:01<00:05,  4.88it/s]Calculating class weights:  29%|██▉       | 9/31 [00:01<00:03,  6.12it/s]Calculating class weights:  42%|████▏     | 13/31 [00:02<00:02,  6.66it/s]Calculating class weights:  55%|█████▍    | 17/31 [00:02<00:01,  7.14it/s]Calculating class weights:  68%|██████▊   | 21/31 [00:03<00:01,  7.56it/s]Calculating class weights:  81%|████████  | 25/31 [00:03<00:00,  7.83it/s]Calculating class weights:  94%|█████████▎| 29/31 [00:04<00:00,  7.90it/s]Calculating class weights: 100%|██████████| 31/31 [00:04<00:00,  7.38it/s]
-Pixel distribution - Black: 157920085, White: 799915
-Class weights - Black: 1.0, White: 14.0506612741176
-Creating model with in_channels=3
-
-Starting training from iteration 0
-Training Progress:   0%|          | 0/30000 [00:00<?, ?it/s]Training Progress:   0%|          | 1/30000 [00:00<5:16:01,  1.58it/s]Training Progress:   0%|          | 2/30000 [00:39<191:17:36, 22.96s/it]
