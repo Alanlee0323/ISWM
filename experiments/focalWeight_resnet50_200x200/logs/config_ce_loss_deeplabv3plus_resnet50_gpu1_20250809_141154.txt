@@ -1,0 +1,24 @@
+Training Configuration (GPU 1):
+========================================
+Model: deeplabv3plus_resnet50
+Dataset: binary
+Loss Type: ce_loss
+Optimizer: sgd
+Learning Rate: 0.001
+Batch Size: 128
+Val Batch Size: 4
+Crop Size: 200
+Total Iterations: 30000
+Validation Interval: 500
+Print Interval: 500
+GPU: 1
+Output Stride: 16
+Random Seed: 1
+Number of Workers: 
+Save Val Results: false
+Save Confidence Map: false
+Crop Val: false
+Enable Visualization: false
+Checkpoints Directory: experiments/focalWeight_resnet50_200x200/checkpoints
+Results Directory: experiments/focalWeight_resnet50_200x200/val_results
+Metrics Plots Directory: experiments/focalWeight_resnet50_200x200/metrics_plots

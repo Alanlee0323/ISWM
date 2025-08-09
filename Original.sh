@@ -1,8 +1,7 @@
 #!/bin/bash
 # 環境設置
 export TF_CPP_MIN_LOG_LEVEL=3
-export CUDA_VISIBLE_DEVICES=1
-export MLFLOW_TRACKING_URI="http://127.0.0.1:5000"
+export CUDA_VISIBLE_DEVICES=0
 
 # 目錄設置
 MODEL_NAME="Deeplabv3+"
@@ -34,7 +33,7 @@ for dir in ${CHECKPOINTS_DIR} ${VAL_RESULTS_DIR} ${LOGS_DIR} ${METRICS_PLOTS_DIR
 done
 
 # 檢查數據目錄
-if [ ! -d "./Deeplabv3Plus_datasets" ]; then
+if [ ! -d "./Final_Training_Dataset" ]; then
   echo "Error: Data directory not found"
   exit 1
 fi

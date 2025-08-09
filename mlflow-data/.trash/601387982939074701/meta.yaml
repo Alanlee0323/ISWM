@@ -1,0 +1,7 @@
+artifact_location: mlflow-artifacts:/601387982939074701
+creation_time: 1754724353530
+experiment_id: '601387982939074701'
+last_update_time: 1754725795280
+lifecycle_stage: deleted
+name: DeepLabV3Plus_deeplabv3plus_resnet50_ce_loss_sgd_os16_20250809_072553
+tags: {}

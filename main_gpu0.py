@@ -52,7 +52,9 @@ OPTIMIZER_CONFIGS = {
 def setup_mlflow(opts):
     """設置 MLflow 的集中管理"""
     # 設置 MLflow 追蹤 URI
-    mlflow.set_tracking_uri("http://127.0.0.1:5000")
+    tracking_uri = os.getenv("MLFLOW_TRACKING_URI", "file:./mlruns")
+    mlflow.set_tracking_uri(tracking_uri)
+    print(f"MLflow tracking URI set to: {tracking_uri}")
 
     # 生成更具描述性的實驗名稱
     timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
@@ -171,8 +173,6 @@ class MetricsLogger:
         self._save_validation_metrics_plot()
         self._save_learning_rate_plot()
         
-        # 添加權重貢獻圖
-        self._save_weight_contribution_plot()
 
     def _save_training_loss_plot(self):
         """保存訓練損失圖"""
@@ -335,6 +335,8 @@ def get_argparser():
                         help="directory for saving metrics plots")
     parser.add_argument("--save_confidence_map", action='store_true', default=False,
                         help="save confidence maps along with predictions")
+    parser.add_argument("--sequence_length", type=int, default=7,
+                        help="Sequence length for temporal metrics (default: 7)")
     
     #控制特徵圖可視化
     parser.add_argument('--save_feature_maps', action='store_true', default=False
@@ -734,7 +736,6 @@ def validate_and_save(model, optimizer, scheduler, val_loader, device, metrics_l
                 cur_itrs, weighted_score, saved_images_count=0
             )
     
-    metrics_logger.save_plots()
     metrics_logger.save_confusion_matrix(metrics.confusion_matrix, cur_itrs)
     
     print("\n" + "="*50)

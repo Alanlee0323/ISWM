@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "/app/main_gpu0.py", line 2, in <module>
+    import network
+  File "/app/network/__init__.py", line 1, in <module>
+    from .modeling import *
+  File "/app/network/modeling.py", line 6, in <module>
+    from .backbone import resnet, tsm_resnet
+ImportError: cannot import name 'tsm_resnet' from 'network.backbone' (/app/network/backbone/__init__.py)

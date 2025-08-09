@@ -2,7 +2,6 @@
 # 環境設置
 export TF_CPP_MIN_LOG_LEVEL=3
 export CUDA_VISIBLE_DEVICES=1
-export MLFLOW_TRACKING_URI="http://127.0.0.1:5000"
 
 # 目錄設置
 MODEL_NAME="AugF_Experiments"

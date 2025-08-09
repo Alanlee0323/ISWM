@@ -3,7 +3,7 @@ from ._deeplab import (DeepLabHead,
                        DeepLabHeadV3Plus, 
                        DeepLabV3, 
                        )
-from .backbone import resnet, tsm_resnet
+from .backbone import resnet
 
 from torch import nn
 import torch

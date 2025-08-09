@@ -1,0 +1,97 @@
+
+Directory settings:
+Checkpoints dir: experiments/focalWeight_resnet50_200x200/checkpoints
+Val results dir: experiments/focalWeight_resnet50_200x200/val_results
+Metrics plots dir: experiments/focalWeight_resnet50_200x200/metrics_plots
+Save feature maps: False
+Feature maps directory: None
+Error setting up MLflow: API request to http://127.0.0.1:5000/api/2.0/mlflow/experiments/get-by-name failed with exception HTTPConnectionPool(host='127.0.0.1', port=5000): Max retries exceeded with url: /api/2.0/mlflow/experiments/get-by-name?experiment_name=DeepLabV3Plus_deeplabv3plus_resnet50_ce_loss_sgd_os16_20250809_062037 (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f60183cf460>: Failed to establish a new connection: [Errno 111] Connection refused'))
+Traceback (most recent call last):
+  File "/opt/conda/lib/python3.10/site-packages/urllib3/connection.py", line 198, in _new_conn
+    sock = connection.create_connection(
+  File "/opt/conda/lib/python3.10/site-packages/urllib3/util/connection.py", line 85, in create_connection
+    raise err
+  File "/opt/conda/lib/python3.10/site-packages/urllib3/util/connection.py", line 73, in create_connection
+    sock.connect(sa)
+ConnectionRefusedError: [Errno 111] Connection refused
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/opt/conda/lib/python3.10/site-packages/urllib3/connectionpool.py", line 793, in urlopen
+    response = self._make_request(
+  File "/opt/conda/lib/python3.10/site-packages/urllib3/connectionpool.py", line 496, in _make_request
+    conn.request(
+  File "/opt/conda/lib/python3.10/site-packages/urllib3/connection.py", line 400, in request
+    self.endheaders()
+  File "/opt/conda/lib/python3.10/http/client.py", line 1278, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+  File "/opt/conda/lib/python3.10/http/client.py", line 1038, in _send_output
+    self.send(msg)
+  File "/opt/conda/lib/python3.10/http/client.py", line 976, in send
+    self.connect()
+  File "/opt/conda/lib/python3.10/site-packages/urllib3/connection.py", line 238, in connect
+    self.sock = self._new_conn()
+  File "/opt/conda/lib/python3.10/site-packages/urllib3/connection.py", line 213, in _new_conn
+    raise NewConnectionError(
+urllib3.exceptions.NewConnectionError: <urllib3.connection.HTTPConnection object at 0x7f60183cf460>: Failed to establish a new connection: [Errno 111] Connection refused
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/opt/conda/lib/python3.10/site-packages/requests/adapters.py", line 589, in send
+    resp = conn.urlopen(
+  File "/opt/conda/lib/python3.10/site-packages/urllib3/connectionpool.py", line 877, in urlopen
+    return self.urlopen(
+  File "/opt/conda/lib/python3.10/site-packages/urllib3/connectionpool.py", line 877, in urlopen
+    return self.urlopen(
+  File "/opt/conda/lib/python3.10/site-packages/urllib3/connectionpool.py", line 877, in urlopen
+    return self.urlopen(
+  [Previous line repeated 2 more times]
+  File "/opt/conda/lib/python3.10/site-packages/urllib3/connectionpool.py", line 847, in urlopen
+    retries = retries.increment(
+  File "/opt/conda/lib/python3.10/site-packages/urllib3/util/retry.py", line 515, in increment
+    raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]
+urllib3.exceptions.MaxRetryError: HTTPConnectionPool(host='127.0.0.1', port=5000): Max retries exceeded with url: /api/2.0/mlflow/experiments/get-by-name?experiment_name=DeepLabV3Plus_deeplabv3plus_resnet50_ce_loss_sgd_os16_20250809_062037 (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f60183cf460>: Failed to establish a new connection: [Errno 111] Connection refused'))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/opt/conda/lib/python3.10/site-packages/mlflow/utils/rest_utils.py", line 189, in http_request
+    return _get_http_response_with_retries(
+  File "/opt/conda/lib/python3.10/site-packages/mlflow/utils/request_utils.py", line 237, in _get_http_response_with_retries
+    return session.request(method, url, allow_redirects=allow_redirects, **kwargs)
+  File "/opt/conda/lib/python3.10/site-packages/requests/sessions.py", line 589, in request
+    resp = self.send(prep, **send_kwargs)
+  File "/opt/conda/lib/python3.10/site-packages/requests/sessions.py", line 703, in send
+    r = adapter.send(request, **kwargs)
+  File "/opt/conda/lib/python3.10/site-packages/requests/adapters.py", line 622, in send
+    raise ConnectionError(e, request=request)
+requests.exceptions.ConnectionError: HTTPConnectionPool(host='127.0.0.1', port=5000): Max retries exceeded with url: /api/2.0/mlflow/experiments/get-by-name?experiment_name=DeepLabV3Plus_deeplabv3plus_resnet50_ce_loss_sgd_os16_20250809_062037 (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f60183cf460>: Failed to establish a new connection: [Errno 111] Connection refused'))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/app/main_gpu0.py", line 1118, in <module>
+    main()
+  File "/app/main_gpu0.py", line 874, in main
+    experiment_name, experiment_id = setup_mlflow(opts)  # 接收兩個返回值
+  File "/app/main_gpu0.py", line 82, in setup_mlflow
+    raise e
+  File "/app/main_gpu0.py", line 63, in setup_mlflow
+    experiment = mlflow.get_experiment_by_name(experiment_name)
+  File "/opt/conda/lib/python3.10/site-packages/mlflow/tracking/fluent.py", line 1671, in get_experiment_by_name
+    return MlflowClient().get_experiment_by_name(name)
+  File "/opt/conda/lib/python3.10/site-packages/mlflow/tracking/client.py", line 1256, in get_experiment_by_name
+    return self._tracking_client.get_experiment_by_name(name)
+  File "/opt/conda/lib/python3.10/site-packages/mlflow/tracking/_tracking_service/client.py", line 502, in get_experiment_by_name
+    return self.store.get_experiment_by_name(name)
+  File "/opt/conda/lib/python3.10/site-packages/mlflow/store/tracking/rest_store.py", line 522, in get_experiment_by_name
+    response_proto = self._call_endpoint(GetExperimentByName, req_body)
+  File "/opt/conda/lib/python3.10/site-packages/mlflow/store/tracking/rest_store.py", line 82, in _call_endpoint
+    return call_endpoint(self.get_host_creds(), endpoint, method, json_body, response_proto)
+  File "/opt/conda/lib/python3.10/site-packages/mlflow/utils/rest_utils.py", line 365, in call_endpoint
+    response = http_request(**call_kwargs)
+  File "/opt/conda/lib/python3.10/site-packages/mlflow/utils/rest_utils.py", line 212, in http_request
+    raise MlflowException(f"API request to {url} failed with exception {e}")
+mlflow.exceptions.MlflowException: API request to http://127.0.0.1:5000/api/2.0/mlflow/experiments/get-by-name failed with exception HTTPConnectionPool(host='127.0.0.1', port=5000): Max retries exceeded with url: /api/2.0/mlflow/experiments/get-by-name?experiment_name=DeepLabV3Plus_deeplabv3plus_resnet50_ce_loss_sgd_os16_20250809_062037 (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f60183cf460>: Failed to establish a new connection: [Errno 111] Connection refused'))

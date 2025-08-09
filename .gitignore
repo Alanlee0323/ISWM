@@ -9,4 +9,7 @@ MLFlow DataDraw/
 Visualization/
 
 # 忽略大型資料集
-datasets/
+Final_Training_Dataset/
+
+# 忽略實驗結果
+experiments/

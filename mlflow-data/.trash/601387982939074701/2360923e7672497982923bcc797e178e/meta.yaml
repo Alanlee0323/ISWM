@@ -1,0 +1,16 @@
+artifact_uri: mlflow-artifacts:/601387982939074701/2360923e7672497982923bcc797e178e/artifacts
+deleted_time: 1754725795280
+end_time: 1754724436049
+entry_point_name: ''
+experiment_id: '601387982939074701'
+lifecycle_stage: deleted
+run_id: 2360923e7672497982923bcc797e178e
+run_name: aged-toad-828
+run_uuid: 2360923e7672497982923bcc797e178e
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1754724353595
+status: 4
+tags: []
+user_id: root

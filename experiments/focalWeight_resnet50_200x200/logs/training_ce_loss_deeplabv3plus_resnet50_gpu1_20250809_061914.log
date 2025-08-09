@@ -1,0 +1,10 @@
+Traceback (most recent call last):
+  File "/app/main_gpu0.py", line 2, in <module>
+    import network
+  File "/app/network/__init__.py", line 1, in <module>
+    from .modeling import *
+  File "/app/network/modeling.py", line 2, in <module>
+    from ._deeplab import (DeepLabHead,
+  File "/app/network/_deeplab.py", line 11, in <module>
+    from datasets import FeatureVisDataset
+ModuleNotFoundError: No module named 'datasets'

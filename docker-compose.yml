@@ -1,0 +1,47 @@
+# 定義您需要的所有服務
+services:
+  # 服務一：MLflow 追蹤伺服器
+  mlflow:
+    # 使用官方的 MLflow 映像檔
+    image: ghcr.io/mlflow/mlflow:v2.18.0
+    ports:
+      # 將您主機的 5000 port 映射到此容器的 5000 port
+      # 這樣您就可以在 Windows 的瀏覽器中打開 http://localhost:5000 查看 MLflow UI
+      - "5000:5000"
+    volumes:
+      # 將 MLflow 產生的所有實驗數據，儲存到您主機的 ./mlflow-data 資料夾中，避免容器關閉後數據遺失
+      - ./mlflow-data:/mlruns
+    # 容器啟動時要執行的指令
+    command: >
+      mlflow server
+      --host 0.0.0.0
+      --port 5000
+      --backend-store-uri /mlruns
+
+  # 服務二：您的訓練應用程式
+  training:
+    # 指示 Docker Compose 使用當前目錄的 Dockerfile 來建置映像檔
+    build: .
+    image: iswm:v1
+    shm_size: '16g'
+    volumes:
+      # 同樣掛載您的專案程式碼，方便修改
+      - .:/app
+    # 指定此服務依賴於 mlflow 服務，確保 mlflow 先啟動
+    depends_on:
+      - mlflow
+    # 在此容器中設定環境變數
+    environment:
+      # 關鍵！將追蹤 URI 指向 mlflow 服務。
+      # Docker Compose 會建立內部網路，讓您可以用服務名稱 'mlflow' 來存取
+      - MLFLOW_TRACKING_URI=http://mlflow:5000
+    # 配置 GPU 資源給此服務
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all # 或 '1' 如果您想指定GPU數量
+              capabilities: [gpu]
+    stdin_open: true # 等同於 docker run -i
+    tty: true        # 等同於 docker run -t
