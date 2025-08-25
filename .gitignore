@@ -23,3 +23,8 @@ experiments/
 .DS_Store
 # Windows
 Thumbs.db
+
+# Jetson deployment specific ignores
+vision/
+test/
+test_results/

@@ -1,12 +1,12 @@
 #!/bin/bash
 # 設定預設值
-INPUT_PATH="/home/g492/Downloads/Alan/Weight_DeepLabV3Plus/Visualization"
-RESULTS_FOLDER="val_results_ISWM"  
-OUTPUT_PATH="/home/g492/Downloads/Alan/Weight_DeepLabV3Plus/${RESULTS_FOLDER}"
+INPUT_PATH="/home/leealan/ISWM/test"
+RESULTS_FOLDER="test_results"  
+OUTPUT_PATH="/home/leealan/ISWM/${RESULTS_FOLDER}"
 MODEL="deeplabv3plus_resnet50"
 DATASET="binary"
-CKPT="/home/g492/Downloads/Alan/Weight_DeepLabV3Plus/experiments/AugF_Experiments/checkpoints/best_deeplabv3plus_resnet50_binary_os16_weighted0.558.pth"  # 預訓練模型的路徑
-GPU_ID="1"
+CKPT="/home/leealan/ISWM/checkpoints/best_deeplabv3plus_resnet50_binary_os16_weighted0.556.pth"  # 預訓練模型的路徑
+GPU_ID="0"
 OUTPUT_STRIDE=16
 
 # 允許動態調整參數
