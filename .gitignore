@@ -28,3 +28,6 @@ Thumbs.db
 vision/
 test/
 test_results/
+
+# 忽略 checkpoints
+checkpoints/*.pth
