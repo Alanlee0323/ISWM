@@ -1,18 +1,20 @@
+
+
 import torch
 import numpy as np
 from PIL import Image
 import matplotlib.pyplot as plt
-import os
 import random
 from tqdm import tqdm
 import torchvision.transforms as T
 import torch.nn as nn
 import argparse
 import cv2  # 導入OpenCV庫用於繪製線條
-from network.modeling import deeplabv3plus_resnet50
-from datasets import BinarySegmentation
+from src.network.modeling import deeplabv3plus_resnet50
+from src.datasets import BinarySegmentation
 from scipy import ndimage
 from skimage import measure, morphology
+import os
 
 def get_argparser():
     parser = argparse.ArgumentParser()

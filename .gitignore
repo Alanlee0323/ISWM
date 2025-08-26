@@ -31,3 +31,9 @@ test_results/
 
 # 忽略 checkpoints
 checkpoints/*.pth
+
+# Ignore validation dataset
+val/
+
+# Ignore environment variables file
+.env
