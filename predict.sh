@@ -1,11 +1,14 @@
 #!/bin/bash
 # 設定預設值
-INPUT_PATH="/home/leealan/ISWM/test"
-RESULTS_FOLDER="test_results"  
-OUTPUT_PATH="/home/leealan/ISWM/${RESULTS_FOLDER}"
+INPUT_PATH="C:/Users/alana/Dropbox/lab/Himawari_Projects/ISWM/calibration_data"
+RESULTS_FOLDER="test_results"
+
+# 修正: 使用 Bash 的變數替換來構建路徑，而不是 Python 的 f-string
+OUTPUT_PATH="C:/Users/alana/Dropbox/lab/Himawari_Projects/ISWM/test_output/${RESULTS_FOLDER}"
+
 MODEL="deeplabv3plus_resnet50"
 DATASET="binary"
-CKPT="/home/leealan/ISWM/checkpoints/best_deeplabv3plus_resnet50_binary_os16_weighted0.556.pth"  # 預訓練模型的路徑
+CKPT="C:/Users/alana/Dropbox/lab/Himawari_Projects/ISWM/checkpoints/best_deeplabv3plus_resnet50_binary_os16_weighted0.556.pth"
 GPU_ID="0"
 OUTPUT_STRIDE=16
 

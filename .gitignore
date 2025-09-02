@@ -13,6 +13,10 @@ Final_Training_Dataset/
 
 # 忽略實驗結果
 experiments/
+predict_results/
+calibration_data/
+test_output/
+
 
 # 忽略 IDE/編輯器產生的設定檔
 .vscode/

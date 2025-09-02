@@ -43,7 +43,7 @@ def main():
     
     # Load trained weights
     print(f"Loading checkpoint from {opts.ckpt}")
-    checkpoint = torch.load(opts.ckpt, map_location=device)
+    checkpoint = torch.load(opts.ckpt, map_location=device, weights_only=False)
     # Handle potential 'module.' prefix from DataParallel
     new_state_dict = {k.replace("module.", ""): v for k, v in checkpoint["model_state"].items()}
     model_fp32.load_state_dict(new_state_dict)
@@ -56,7 +56,7 @@ def main():
     # 2. Prepare the model for quantization
     print("\nPreparing model for quantization...")
     # For your target Jetson device (ARM architecture), 'qnnpack' is the correct backend.
-    qconfig = torch.quantization.get_default_qconfig('qnnpack')
+    qconfig = torch.quantization.get_default_qconfig('fbgemm')
     model_to_quantize.qconfig = qconfig
     
     # Insert observers to collect statistics

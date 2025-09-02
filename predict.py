@@ -79,7 +79,7 @@ def get_model(model_name, num_classes, output_stride=8):
 
 def load_model(model, ckpt_path, device):
     if ckpt_path is not None and os.path.isfile(ckpt_path):
-        checkpoint = torch.load(ckpt_path, map_location=device)
+        checkpoint = torch.load(ckpt_path, map_location=device, weights_only=False)
         new_state_dict = {k.replace("module.", ""): v for k, v in checkpoint["model_state"].items()}
         model.load_state_dict(new_state_dict)
         model = model.to(device)
