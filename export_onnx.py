@@ -1,29 +1,28 @@
-
 import torch
 import os
 import argparse
-from network.modeling import deeplabv3plus_resnet50
+from src.network.modeling import deeplabv3plus_resnet50
 
 def get_argparser():
     """
     新增一個函數來處理 ONNX 導出的參數。
     """
-    parser = argparse.ArgumentParser(description="Export PyTorch model to ONNX format")
+    parser = argparse.ArgumentParser(description="Export PyTorch model to ONNX format for TensorRT")
     
     parser.add_argument("--ckpt", type=str, required=True,
-                      help="Path to the PyTorch model checkpoint (.pth file)")
+                        help="Path to the PyTorch model checkpoint (.pth file)")
     parser.add_argument("--output_file", type=str, required=True,
-                      help="Path to save the output ONNX file")
+                        help="Path to save the output ONNX file")
     parser.add_argument('--model', type=str, default='deeplabv3plus_resnet50',
-                      help='Model name')
+                        help='Model name')
     parser.add_argument("--num_classes", type=int, default=2,
-                      help="Number of classes in the model")
+                        help="Number of classes in the model")
     parser.add_argument("--output_stride", type=int, default=16,
-                      help='Output stride for DeepLabV3+ (8 or 16)')
-    parser.add_argument("--input_height", type=int, default=513,
-                      help="The height of the dummy input tensor for ONNX export.")
-    parser.add_argument("--input_width", type=int, default=513,
-                      help="The width of the dummy input tensor for ONNX export.")
+                        help='Output stride for DeepLabV3+ (8 or 16)')
+    parser.add_argument("--input_height", type=int, default=200,
+                        help="The height of the dummy input tensor for ONNX export.")
+    parser.add_argument("--input_width", type=int, default=200,
+                        help="The width of the dummy input tensor for ONNX export.")
 
     return parser
 
@@ -33,16 +32,16 @@ def main():
     """
     opts = get_argparser().parse_args()
     
-    # 1. 設備選擇
-    device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
-    print(f"Using device: {device}")
+    # 1. 設備選擇 (建議: 強制使用 CPU 導出以獲得最佳相容性)
+    device = torch.device('cpu')
+    print(f"Using device for export: {device}")
 
     # 2. 建立模型架構
     print(f"Loading model: {opts.model}")
     model = deeplabv3plus_resnet50(
         num_classes=opts.num_classes,
         output_stride=opts.output_stride,
-        pretrained_backbone=False  # 在這裡設為 False，因為我們要載入自己的權重
+        pretrained_backbone=False # 載入自己的權重時，這裡設為 False 即可
     )
 
     # 3. 載入訓練好的權重
@@ -52,10 +51,9 @@ def main():
     print(f"Loading checkpoint from: {opts.ckpt}")
     checkpoint = torch.load(opts.ckpt, map_location=device)
     
-    # 處理 'module.' 前綴 (通常在 DataParallel 訓練後出現)
+    # 處理 'module.' 前綴
     state_dict = {k.replace("module.", ""): v for k, v in checkpoint["model_state"].items()}
     model.load_state_dict(state_dict)
-    model.to(device)
     
     # 4. 設定為評估模式
     model.eval()
@@ -73,19 +71,21 @@ def main():
             dummy_input,
             opts.output_file,
             verbose=False,
-            input_names=['input'],   # 輸入層的名稱
-            output_names=['output'], # 輸出層的名稱
-            opset_version=11,        # ONNX 的版本
+            input_names=['input'],
+            output_names=['output'],
+            opset_version=11,
+            # 【建議】啟用常數摺疊，對 TensorRT 最佳化有益
+            do_constant_folding=True,
             dynamic_axes={
-                'input': {0: 'batch_size', 2: 'height', 3: 'width'}, # 讓 batch, height, width 可以是動態的
-                'output': {0: 'batch_size', 2: 'height', 3: 'width'} # 讓輸出的維度也跟著動態調整
+                'input': {0: 'batch_size', 2: 'height', 3: 'width'},
+                'output': {0: 'batch_size', 2: 'height', 3: 'width'}
             }
         )
-        print("\nONNX model exported successfully!")
+        print("\n✅ ONNX model exported successfully!")
         print(f"You can now use the file: {opts.output_file}")
 
     except Exception as e:
-        print(f"\nAn error occurred during ONNX export: {e}")
+        print(f"\n❌ An error occurred during ONNX export: {e}")
 
 if __name__ == '__main__':
     main()

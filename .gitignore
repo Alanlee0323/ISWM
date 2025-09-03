@@ -17,6 +17,9 @@ predict_results/
 calibration_data/
 test_output/
 
+# 要傳到 NX 的檔案
+FileToXavierNX/
+
 
 # 忽略 IDE/編輯器產生的設定檔
 .vscode/
@@ -35,6 +38,7 @@ test_results/
 
 # 忽略 checkpoints
 checkpoints/*.pth
+checkpoints/*.onnx
 
 # Ignore validation dataset
 val/
