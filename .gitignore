@@ -1,6 +1,7 @@
 # 忽略 Python 產生的檔案
 __pycache__/
 *.pyc
+vision/
 
 # 忽略 MLFlow 產生的結果
 mlflow-data/
@@ -10,6 +11,8 @@ Visualization/
 
 # 忽略大型資料集
 Final_Training_Dataset/
+calibration_data/
+val/
 
 # 忽略實驗結果
 experiments/
@@ -23,3 +26,15 @@ experiments/
 .DS_Store
 # Windows
 Thumbs.db
+
+# Jetson deployment specific ignores
+vision/
+test/
+test_results/
+
+# 忽略 checkpoints
+checkpoints/
+
+# 忽略 Torch 安裝包
+torch-2.1.0a0+41361538.nv23.06-cp38-cp38-linux_aarch64.whl
+torchvision/
