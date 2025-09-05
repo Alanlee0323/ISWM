@@ -20,9 +20,9 @@ def get_argparser():
                       help="Number of classes in the model")
     parser.add_argument("--output_stride", type=int, default=16,
                       help='Output stride for DeepLabV3+ (8 or 16)')
-    parser.add_argument("--input_height", type=int, default=513,
+    parser.add_argument("--input_height", type=int, default=200,
                       help="The height of the dummy input tensor for ONNX export.")
-    parser.add_argument("--input_width", type=int, default=513,
+    parser.add_argument("--input_width", type=int, default=200,
                       help="The width of the dummy input tensor for ONNX export.")
 
     return parser
@@ -76,6 +76,8 @@ def main():
             input_names=['input'],   # 輸入層的名稱
             output_names=['output'], # 輸出層的名稱
             opset_version=11,        # ONNX 的版本
+            training=torch.onnx.TrainingMode.EVAL,
+            do_constant_folding=False,
             dynamic_axes={
                 'input': {0: 'batch_size', 2: 'height', 3: 'width'}, # 讓 batch, height, width 可以是動態的
                 'output': {0: 'batch_size', 2: 'height', 3: 'width'} # 讓輸出的維度也跟著動態調整
