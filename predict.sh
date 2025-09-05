@@ -1,12 +1,15 @@
 #!/bin/bash
 # 設定預設值
-INPUT_PATH="/home/g492/Downloads/Alan/Weight_DeepLabV3Plus/Visualization"
-RESULTS_FOLDER="val_results_ISWM"  
-OUTPUT_PATH="/home/g492/Downloads/Alan/Weight_DeepLabV3Plus/${RESULTS_FOLDER}"
+INPUT_PATH="C:/Users/alana/Dropbox/lab/Himawari_Projects/ISWM/calibration_data"
+RESULTS_FOLDER="test_results"
+
+# 修正: 使用 Bash 的變數替換來構建路徑，而不是 Python 的 f-string
+OUTPUT_PATH="C:/Users/alana/Dropbox/lab/Himawari_Projects/ISWM/test_output/${RESULTS_FOLDER}"
+
 MODEL="deeplabv3plus_resnet50"
 DATASET="binary"
-CKPT="/home/g492/Downloads/Alan/Weight_DeepLabV3Plus/experiments/AugF_Experiments/checkpoints/best_deeplabv3plus_resnet50_binary_os16_weighted0.558.pth"  # 預訓練模型的路徑
-GPU_ID="1"
+CKPT="C:/Users/alana/Dropbox/lab/Himawari_Projects/ISWM/checkpoints/best_deeplabv3plus_resnet50_binary_os16_weighted0.556.pth"
+GPU_ID="0"
 OUTPUT_STRIDE=16
 
 # 允許動態調整參數

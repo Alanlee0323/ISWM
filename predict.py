@@ -1,18 +1,20 @@
+
+
 import torch
 import numpy as np
 from PIL import Image
 import matplotlib.pyplot as plt
-import os
 import random
 from tqdm import tqdm
 import torchvision.transforms as T
 import torch.nn as nn
 import argparse
 import cv2  # 導入OpenCV庫用於繪製線條
-from network.modeling import deeplabv3plus_resnet50
-from datasets import BinarySegmentation
+from src.network.modeling import deeplabv3plus_resnet50
+from src.datasets import BinarySegmentation
 from scipy import ndimage
 from skimage import measure, morphology
+import os
 
 def get_argparser():
     parser = argparse.ArgumentParser()
@@ -77,7 +79,7 @@ def get_model(model_name, num_classes, output_stride=8):
 
 def load_model(model, ckpt_path, device):
     if ckpt_path is not None and os.path.isfile(ckpt_path):
-        checkpoint = torch.load(ckpt_path, map_location=device)
+        checkpoint = torch.load(ckpt_path, map_location=device, weights_only=False)
         new_state_dict = {k.replace("module.", ""): v for k, v in checkpoint["model_state"].items()}
         model.load_state_dict(new_state_dict)
         model = model.to(device)
