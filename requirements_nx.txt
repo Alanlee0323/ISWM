@@ -6,3 +6,8 @@ opencv-python-headless
 matplotlib
 tqdm
 einops
+pycuda
+onnxruntime
+fastapi
+uvicorn[standard]
+python-multipart

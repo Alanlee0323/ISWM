@@ -1,8 +1,13 @@
+import sys
+import os
+project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
+sys.path.insert(0, project_root)
+
+import argparse
 import torch
 import numpy as np
 from PIL import Image, UnidentifiedImageError
-import os
-import argparse
+
 import time
 from tqdm import tqdm
 import torchvision.transforms as T
@@ -11,7 +16,8 @@ import tensorrt as trt
 import pycuda.driver as cuda
 import pycuda.autoinit
 import logging
-import sys
+
+
 
 # --- 解決 GDK 圖形介面錯誤 ---
 import matplotlib
@@ -27,7 +33,7 @@ except ImportError:
     print("="*50)
     print("錯誤：找不到 'StreamMetrics' 類別！")
     print("請確認您的專案根目錄 (ISWM) 下有一個 metrics.py 檔案，")
-    print("或者修改 evaluate_trt.py 中的 import 路徑。")
+    print("或者修改 predict_trt.py 中的 import 路徑。")
     print("="*50)
     exit()
 # --------------------------------
