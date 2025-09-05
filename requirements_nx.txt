@@ -1,8 +1,0 @@
-numpy
-scipy
-Pillow
-scikit-image
-opencv-python-headless
-matplotlib
-tqdm
-einops
