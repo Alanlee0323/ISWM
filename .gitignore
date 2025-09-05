@@ -10,9 +10,14 @@ Visualization/
 
 # 忽略大型資料集
 Final_Training_Dataset/
+calibration_data/
+val/
 
 # 忽略實驗結果
 experiments/
+checkpoints/
+predict_results/
+test_output/
 
 # 忽略 IDE/編輯器產生的設定檔
 .vscode/
