@@ -10,6 +10,10 @@ Visualization/
 
 # 忽略大型資料集
 Final_Training_Dataset/
+calibration_data/
+val/
+test/
+test_results/
 
 # 忽略實驗結果
 experiments/
