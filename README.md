@@ -1,4 +1,4 @@
-# ISWM (Integrated Satellite Weather Monitoring)
+# ISWM (Internal Solitary Wave Monitor)
 
 這個專案利用深度學習技術，對可見光衛星影像中的海洋內波進行語意分割。我們使用 DeeplabV3+ 模型，旨在建立一套自動化系統，用於高效地預警與追蹤海洋內波現象。
 
