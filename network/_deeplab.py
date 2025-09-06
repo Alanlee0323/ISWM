@@ -6,9 +6,9 @@ import math
 import numpy as np
 from .utils import _SimpleSegmentationModel
 import matplotlib.pyplot as plt
-from utils import ext_transforms as et
+from src.utils import ext_transforms as et
 from torch.utils import data
-from datasets import FeatureVisDataset
+from src.datasets import FeatureVisDataset
 from einops.layers.torch import Rearrange
 import cv2
 

@@ -94,6 +94,7 @@ class Bottleneck(nn.Module):
         self.relu = nn.ReLU(inplace=True)
         self.downsample = downsample
         self.stride = stride
+        self.add = nn.quantized.FloatFunctional()
 
     def forward(self, x):
         identity = x
@@ -112,7 +113,8 @@ class Bottleneck(nn.Module):
         if self.downsample is not None:
             identity = self.downsample(x)
 
-        out += identity
+        # --- 【修改】使用 FloatFunctional 進行量化安全的加法 ---
+        out = self.add.add(out, identity)
         out = self.relu(out)
 
         return out

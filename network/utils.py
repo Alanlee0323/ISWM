@@ -9,12 +9,19 @@ class _SimpleSegmentationModel(nn.Module):
         super(_SimpleSegmentationModel, self).__init__()
         self.backbone = backbone
         self.classifier = classifier
+        # --- 新增量化的入口與出口 ---
+        self.quant = torch.quantization.QuantStub()
+        self.dequant = torch.quantization.DeQuantStub()
         
     def forward(self, x):
+        # 在所有運算之前，先通過 "入口" 進行量化
+        x = self.quant(x)
         input_shape = x.shape[-2:]
         features = self.backbone(x)
         x = self.classifier(features)
         x = F.interpolate(x, size=input_shape, mode='bilinear', align_corners=False)
+        # 在最終回傳之前，通過 "出口" 反量化回浮點數
+        x = self.dequant(x)
         return x
 
 
