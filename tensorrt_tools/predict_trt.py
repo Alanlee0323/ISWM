@@ -17,10 +17,6 @@ import sys
 import matplotlib
 matplotlib.use('Agg')
 # --------------------------------
-
-# --- 修正 Import 路徑 ---
-# 假設您的 StreamMetrics 類別在您專案根目錄下的 metrics.py 中
-# 如果不是，請修改成正確的路徑，例如 from datasets.metrics import StreamMetrics
 try:
     from metrics import StreamMetrics
 except ImportError:

@@ -18,19 +18,11 @@ def get_argparser():
     parser.add_argument("--num_classes", type=int, default=2,
                         help="Number of classes in the model")
     parser.add_argument("--output_stride", type=int, default=16,
-<<<<<<< HEAD:export_onnx.py
                         help='Output stride for DeepLabV3+ (8 or 16)')
     parser.add_argument("--input_height", type=int, default=200,
                         help="The height of the dummy input tensor for ONNX export.")
     parser.add_argument("--input_width", type=int, default=200,
                         help="The width of the dummy input tensor for ONNX export.")
-=======
-                      help='Output stride for DeepLabV3+ (8 or 16)')
-    parser.add_argument("--input_height", type=int, default=200,
-                      help="The height of the dummy input tensor for ONNX export.")
-    parser.add_argument("--input_width", type=int, default=200,
-                      help="The width of the dummy input tensor for ONNX export.")
->>>>>>> a266965fb4e5417d316823eefbe1469495ecad79:tensorrt_tools/export_onnx.py
 
     return parser
 
