@@ -16,6 +16,7 @@ test/
 test_results/
 
 # 忽略實驗結果
+MLFlow_DataDraw/
 experiments/
 predict_results/
 calibration_data/

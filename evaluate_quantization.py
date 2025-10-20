@@ -78,8 +78,6 @@ class EvaluationDataset(Dataset):
             # 重新拋出例外，讓 DataLoader 的錯誤處理機制接手
             raise e
 
-# --- 輔助函式 ---
-
 def get_argparser():
     parser = argparse.ArgumentParser(description="FP32 vs. INT8 Model Evaluation Script")
     parser.add_argument("--fp32_ckpt", required=True, type=str, help="Path to the trained FP32 model checkpoint (.pth)")
@@ -185,7 +183,6 @@ def save_visual_comparison(original_img, gt_mask, fp32_pred, int8_pred, output_p
     plt.savefig(save_path)
     plt.close(fig)
 
-# --- 主評估邏輯 ---
 
 def main():
     """
