@@ -1,0 +1,4 @@
+[core]
+    remote = aws_s3_test
+['remote "aws_s3_test"']
+    url = s3://alana-dvc-test-bucket-2025
