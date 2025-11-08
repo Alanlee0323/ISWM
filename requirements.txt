@@ -16,7 +16,7 @@ scikit-image==0.19.2
 # 解決衝突：為 Docker 環境選擇 headless 版本，更輕量
 opencv-python-headless==4.11.0.86
 
-# 資料處理常會用到，建議保留
+# 資料處理
 pandas==2.2.2
 h5py==3.12.1
 
