@@ -43,14 +43,3 @@ jobs:
             exit 1
           fi
 
-### 2. 如何強制執行 (GitHub)
-
-要像 GitLab 那樣強制執行，您需要在 GitHub 專案中設定 **分支保護規則 (Branch Protection Rule)**：
-
-1.  進入您的 GitHub 專案 **Settings (設定) -> Branches (分支)**。
-2.  點擊您的主分支（例如 `main`）旁邊的 **Edit (編輯)** 按鈕。
-3.  在 **Branch protection rules (分支保護規則)** 中，勾選：
-    * **Require status checks to pass before merging (要求狀態檢查通過才能合併)**。
-    * 在下面的搜尋框中，找到並選擇您剛才創建的 Job 名稱，通常是 **`DVC PR Title Check / Enforce DVC Update Title Format`** 或 **`check_dvc_title`**。
-
-這樣，只要有人修改了 `.dvc` 檔案，但 PR 標題不符合規範，GitHub Actions 就會失敗，阻止該 PR 合併到 `main` 分支。
