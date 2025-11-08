@@ -1,0 +1,56 @@
+# .github/workflows/dvc_data_check.yml
+
+name: DVC PR Title Check
+
+# 什麼時候觸發這個 workflow
+on:
+  pull_request:
+    types: [opened, reopened, edited, synchronize] # 在 PR 開啟、更新或編輯時觸發
+
+jobs:
+  check_dvc_title:
+    runs-on: ubuntu-latest
+    
+    steps:
+      # 步驟 1: 檢查 .dvc 檔案是否有變更
+      # 這個步驟會判斷 PR 中是否有 .dvc 檔案的變動，如果沒有則跳過後續檢查。
+      - name: Check for DVC file changes
+        id: check_files
+        uses: tj-actions/changed-files@v44 # 使用一個 marketplace action 來高效判斷檔案變更
+        with:
+          files: |
+            **/*.dvc
+            .dvc/config
+          
+      # 步驟 2: 如果偵測到 .dvc 變更，則執行標題格式檢查
+      - name: Enforce DVC Update Title Format
+        # 只有在前一步驟偵測到變動時才執行
+        if: steps.check_files.outputs.any_changed == 'true'
+        run: |
+          echo "DVC file changes detected. Checking Pull Request title..."
+          
+          # GitHub Actions 中，PR 標題可以直接通過內建變數取得
+          PR_TITLE="${{ github.event.pull_request.title }}"
+          
+          # 正則表達式檢查：[Update dataset vX.X]
+          if [[ "$PR_TITLE" =~ ^\[Update\ dataset\ v[0-9]+\.[0-9]+\]$ ]]; then
+            echo "✅ PR 標題符合 DVC 更新規範: $PR_TITLE"
+          else
+            echo "❌ PR 標題不符合規範！"
+            echo "👉 預期格式應為: [Update dataset vX.X]"
+            echo "👉 當前標題為: $PR_TITLE"
+            # 退出並回傳失敗狀態，阻止合併
+            exit 1
+          fi
+
+### 2. 如何強制執行 (GitHub)
+
+要像 GitLab 那樣強制執行，您需要在 GitHub 專案中設定 **分支保護規則 (Branch Protection Rule)**：
+
+1.  進入您的 GitHub 專案 **Settings (設定) -> Branches (分支)**。
+2.  點擊您的主分支（例如 `main`）旁邊的 **Edit (編輯)** 按鈕。
+3.  在 **Branch protection rules (分支保護規則)** 中，勾選：
+    * **Require status checks to pass before merging (要求狀態檢查通過才能合併)**。
+    * 在下面的搜尋框中，找到並選擇您剛才創建的 Job 名稱，通常是 **`DVC PR Title Check / Enforce DVC Update Title Format`** 或 **`check_dvc_title`**。
+
+這樣，只要有人修改了 `.dvc` 檔案，但 PR 標題不符合規範，GitHub Actions 就會失敗，阻止該 PR 合併到 `main` 分支。
