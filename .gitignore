@@ -50,3 +50,4 @@ val/
 
 # Ignore environment variables file
 .env
+/data
